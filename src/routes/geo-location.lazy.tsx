@@ -4,7 +4,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const GeoLocation = () => {
+const GeoLocationPage = () => {
   const [loaded, setLoaded] = useState(false);
   const [coords, setCoords] = useState<LatLngExpression>([0, 0]);
   useEffect(() => {
@@ -43,5 +43,5 @@ const GeoLocation = () => {
 };
 
 export const Route = createLazyFileRoute("/geo-location")({
-  component: GeoLocation,
+  component: GeoLocationPage,
 });

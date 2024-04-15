@@ -16,10 +16,16 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const NotificationLazyImport = createFileRoute('/notification')()
 const GeoLocationLazyImport = createFileRoute('/geo-location')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const NotificationLazyRoute = NotificationLazyImport.update({
+  path: '/notification',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/notification.lazy').then((d) => d.Route))
 
 const GeoLocationLazyRoute = GeoLocationLazyImport.update({
   path: '/geo-location',
@@ -43,6 +49,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GeoLocationLazyImport
       parentRoute: typeof rootRoute
     }
+    '/notification': {
+      preLoaderRoute: typeof NotificationLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -51,6 +61,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   GeoLocationLazyRoute,
+  NotificationLazyRoute,
 ])
 
 /* prettier-ignore-end */

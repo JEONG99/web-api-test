@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { ChangeEvent, useState } from "react";
 
-const WebSpeech = () => {
+const WebSpeechPage = () => {
   const [value, setValue] = useState("");
   const synth = window.speechSynthesis;
 
@@ -29,5 +29,5 @@ const WebSpeech = () => {
 };
 
 export const Route = createLazyFileRoute("/")({
-  component: WebSpeech,
+  component: WebSpeechPage,
 });

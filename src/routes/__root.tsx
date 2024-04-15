@@ -11,6 +11,9 @@ export const Route = createRootRoute({
         <Link to="/geo-location" className="[&.active]:font-bold">
           Geo Location
         </Link>
+        <Link to="/notification" className="[&.active]:font-bold">
+          Notification
+        </Link>
       </div>
       <hr />
       <Outlet />
